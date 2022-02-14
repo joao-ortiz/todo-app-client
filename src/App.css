@@ -1,38 +1,300 @@
-.App {
-  text-align: center;
-}
+@keyframes enter {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+:root {
+  --main-bg-color: #0c0c0c;
+  --red: #ffcccb;
+}
+
+body {
+  box-sizing: border-box;
+  color: var(--main-bg-color);
+  font-size: 18px;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 0.8rem;
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.checkbox-container input {
+  cursor: pointer;
+}
+
+.input-container {
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+}
+
+.react-datepicker__input-container{
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.react-datepicker__input-container input {
+  height: 1rem;
+  width: 100%;
+  border: solid 2px var(--main-bg-color);
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.input-label {
+  position: absolute;
+  top: calc(50% - 0.75rem);
+  left: 1.3rem;
+  line-height: 1rem;
+  transition: all 0.2s;
+  padding: 0 0.2rem;
+  border-radius: 5px;
+}
+
+.input:valid~ .input-label, .input:focus ~ .input-label {
+  top: 0.5rem;
+  background-color: white;
+}
+
+.input {
+  height: 1rem;
+  width: 100%;
+  border: solid 2px var(--main-bg-color);
+  border-radius: 5px;
+  padding: 0.5rem
+}
+
+
+.button {
+  background-color: var(--main-bg-color);
+  outline: none;
+  border: 0;
+  border-radius: 1000px;
+  padding: 0.25rem 1rem;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.button:hover {
+  transition: all 0.2s;
+  transform: scale(1.05);
+  box-shadow: 0px 5px 8px -3px #000000;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.divider {
+  border-top: dotted 1px;
+  border-color: var(--main-bg-color);
+  border-width: 0.1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 40vw;
+  padding: 5vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background-color: azure;
+}
+
+.home-container {
+  width: 60vw;
+  height: calc(90vh - 10vw);
+  border-radius: 10px;
+  overflow-y:  scroll;
+  padding: 5vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background-color: azure;
+}
+
+.projects-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+.new-project-container, .create-task-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: solid 2px;
+  border-color: var(--main-bg-color);
+  width: calc(50vw - 10vw);
+  height: 50vh;
+  padding: 5vw;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background-color: azure;
+}
+
+.create-task-container {
+  height: 20vh;
+  overflow: visible;
+}
+
+.close , .task-close {
+  position: absolute;
+  top: 1vw;
+  left: 5vw;
+  font-size: 4rem;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.close:hover , .task-close:hover {
+  transform: scale(1.05);
+  text-shadow: 0px 4px 2px #575757;
+}
+
+.project-link {
+  text-decoration: none;
+  background-color: var(--main-bg-color);
+  margin: 1vw;
+  padding: 3vw;
   color: white;
+  border-radius: 10px;
+  transition: all 0.2s;
+  animation: enter 0.4s ease-in;
 }
 
-.App-link {
-  color: #61dafb;
+.project-link:hover {
+  transform: scale(1.01);
+  text-shadow: 3px 5px 1.5rem var(--red);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.project-container {
+  width: 60vw;
+  height: calc(100vh - 10vw);
+  border-radius: 10px;
+  overflow:  hidden;
+  padding: 5vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background-color: azure;
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap ;
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.task-card-container {
+  text-decoration: none;
+  background-color: var(--main-bg-color);
+  margin: 0.5rem;
+  padding: 1rem;
+  color: white;
+  border-radius: 10px;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(33% - 3rem);
+  position: relative;
+  animation: enter 0.4s ease-in;
+}
+
+.done {
+  width: fit-content !important;
+}
+
+.task-card-container .button {
+  background-color: var(--red);
+  color: var(--main-bg-color);
+  height: 1rem;
+  font-size: 1rem;
+  padding: 0.1rem;
+  line-height: 1rem;
+  border-radius: 1px;
+  margin-bottom: 0;
+}
+
+
+.task-description {
+  margin: 0 1vw;
+}
+
+.task-deadline{
+  position: absolute;
+  opacity: 0;
+  top: -0.75rem;
+  height: 1.5rem;
+  background-color: white;
+  color: var(--main-bg-color);
+  padding: 0.1rem;
+  line-height: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border-bottom: solid 1 px var(--main-bg-color);
+  border-style: dashed;
+  border-top:none;
+  border-width: 0.7px;
+  font-weight: bold;
+  font-size: 0.8rem;
+
+}
+
+.task-card-container:hover > .task-deadline {
+  opacity: 1;
 }
